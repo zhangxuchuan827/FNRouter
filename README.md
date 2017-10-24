@@ -32,12 +32,12 @@
 
 ```
 FNRouter
-	|-FNRouter.h
-	|-NSObject+FNRouterVCObject.h/m
-	|-UINavigationController+FNRouterPush.h/m
-	|-UIViewController+FNRouterInit.h/m
-	|-FNURLRouter.h/m
-	|-FNRModuleList.plist
+  |-FNRouter.h
+  |-NSObject+FNRouterVCObject.h/m
+  |-UINavigationController+FNRouterPush.h/m
+  |-UIViewController+FNRouterInit.h/m
+  |-FNURLRouter.h/m
+  |-FNRModuleList.plist
 
 ```
 ```
@@ -45,7 +45,7 @@ FNRouter
 第一部分是相关引用。若工程中有很多跨模块引用的模型，可以在这里添加引用声明
 第二部分是控制器别名声明。主要是防止调用期间写错，所以在这里用变量给控制器起别名。建议加前缀和原控制器名区别开。
 
-例：
+e.p.
 ///模块1
 static NSString * FNR_FNNewsDetailViewController = @"FNNewsDetailViewController";
 
