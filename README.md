@@ -122,8 +122,6 @@ e.p.
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
 
 
-
-
 e.p.
 跳转Native模块
  [[FNURLRouter shared] openUrl:@"fnr://NewsDetail?pno=0&psize=1" withNavigationController:self.navigationController];
@@ -136,6 +134,15 @@ e.p.
 
 ```
 
+3.获取一个控制器实例
 
+```
+-(UIViewController*)getInstanceByViewControllerName:(NSString *)name;
+-(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParamDictionary:(NSDictionary *)param;
+-(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam:(id)param;
+-(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam1:(id)param1 Param2:(id)param2;
 
+e.p.
 
+UIViewController * vc = [self getInstanceByViewControllerName:FNR_FNNewsListViewController];
+```
