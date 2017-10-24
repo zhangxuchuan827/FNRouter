@@ -79,21 +79,13 @@ URL调用Native相关逻辑都在这里
 1.页面跳转
 
 ```
-
 -(void)pushVC:(NSString *)name animation:(BOOL)animation;
-
 -(void)pushVC:(NSString *)name ;
-
 -(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
-
 -(void)pushVC:(NSString *)name Param:(id)param;
-
 -(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
-
 -(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2;
-
 -(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
-
 -(void)pushVC:(NSString *)name url:(NSString*)url;
 
 e.p. 
@@ -114,11 +106,8 @@ e.p.
 
 ```
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
-
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
-
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
-
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
 
 
