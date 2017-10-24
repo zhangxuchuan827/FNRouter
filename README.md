@@ -24,6 +24,8 @@
 
 3.Hybrid应用，H5调用Native模块
 
+4.模块间的跳转
+
 ![](./img/taobao.png)
 
 
