@@ -129,7 +129,7 @@ e.p.
  [[FNURLRouter shared] openUrl:@"fnr://NewsDetail?pno=0&psize=1" withNavigationController:self.navigationController];
  
 跳转WebController
-<1>.先要注册Web控制器
+<1>.初始化的时候注册控制器
 -(void)registerWebViewController:(NSString*)clsName;
     
 <2>.[[FNURLRouter shared] openUrl:@"http://m.baidu.com" withNavigationController:self.navigationController];
