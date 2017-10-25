@@ -18,16 +18,24 @@ static FNURLRouter * sharedObj = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedObj = [[FNURLRouter alloc] init];
-        [sharedObj loadModuleList];
+        
     });
     return sharedObj;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self loadModuleList];
+    }
+    return self;
+}
 
--(void)registerWebViewController:(NSString *)clsName{
+-(void)registerDefaultWebViewController:(NSString *)clsName{
     
     NSAssert(clsName, @"不能为空");
-    _webViewControllerClassName = clsName;
+    _defaultWebViewControllerClassName = clsName;
 }
 
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController{
@@ -64,15 +72,15 @@ static FNURLRouter * sharedObj = nil;
     
     if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
         
-        //判断VC-Class如果存在就创见新的VC并且push
-        if (_webViewControllerClassName) {
+        //
+        if (_defaultWebViewControllerClassName) {
             
-            [navController pushVC:_webViewControllerClassName url:url animation:animation];
+            [navController pushVC:_defaultWebViewControllerClassName url:url animation:animation];
             
             return;
         }
         
-        //如果没有存在就调起系统的浏览器
+        //
         
         if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
             
@@ -88,7 +96,7 @@ static FNURLRouter * sharedObj = nil;
     //判断是否是模块调用的连接
     NSString * realVCName = _moduleList[targetURL.host];
     
-    if ([targetURL.scheme.lowercaseString isEqualToString:FNPtotocolPrefix] &&
+    if ([targetURL.scheme.lowercaseString isEqualToString:self.protocolPrefix] &&
         realVCName != nil) {
         
         NSMutableDictionary * dict = [[NSMutableDictionary alloc] initWithDictionary:param];
@@ -104,7 +112,63 @@ static FNURLRouter * sharedObj = nil;
     
 }
 
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+    
+    if (url == nil ) {
+        
+        NSLog(@"ERROR:传入的URL不能为空")
+        return;
+    }
+    
+    if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
+        
+        NSLog(@"ERROR：URL格式不正确");
+        return;
+    }
+    
+    NSURL * targetURL = [[NSURL alloc] initWithString:url];
+    
+    if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
+        
+        //
+        if (vcName) {
+            
+            [navController pushVC:vcName url:url animation:animation];
+            
+            return;
+        }
+        
+        //
+        
+        if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
+            
+            [[UIApplication sharedApplication]openURL:targetURL];
+            
+            return;
+        }
+        
+        NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
+        return;
+    }
+    
+    //判断是否是模块调用的连接
+    NSString * realVCName = _moduleList[targetURL.host];
+    
+    if ([targetURL.scheme.lowercaseString isEqualToString:self.protocolPrefix] &&
+        realVCName != nil) {
+        
+        [navController pushVC:realVCName ParamDictionary:[self parsedLinkParameters:targetURL.absoluteString] animation:animation];
+        
+        return;
+    }
+    
+    NSLog(@"ERROR:无法调用该URL-%@",url);
+}
 
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
+    
+    [self openUrl:url withVCName:vcName withNavigationController:navController animation:YES];
+}
 
 -(void)openURLWithSystem:(NSString *)url{
     
@@ -153,5 +217,19 @@ static FNURLRouter * sharedObj = nil;
 }
 
 
+
+#pragma mark - 懒加载
+
+-(NSString *)protocolPrefix{
+    
+    if (!_protocolPrefix) {
+        
+        _protocolPrefix = @"fnr";
+        
+    }
+    
+    return _protocolPrefix;
+    
+}
 
 @end

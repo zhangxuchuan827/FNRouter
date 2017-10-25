@@ -11,12 +11,15 @@
 @implementation NSObject (FNRouterVCObject)
 
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name{
-    
-    NSAssert(name, @"控制器名称不能为nil");
-    
+
     Class vcClass = NSClassFromString(name);
     
+#if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
+#else
+    return [[UIViewController alloc] init];;
+    
+#endif
     
     UIViewController * vc = [[vcClass alloc] init];
     
@@ -27,11 +30,14 @@
 
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParamDictionary:(NSDictionary *)param{
     
-    NSAssert(name, @"控制器名称不能为nil");
-    
     Class vcClass = NSClassFromString(name);
     
+#if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
+#else
+    return [[UIViewController alloc] init];;
+    
+#endif
     
     UIViewController * vc = [[vcClass alloc] initWithParamDictionary:param];
     
@@ -40,11 +46,14 @@
 
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam:(id)param{
     
-    NSAssert(name, @"控制器名称不能为nil");
-    
     Class vcClass = NSClassFromString(name);
     
+#if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
+#else
+    return [[UIViewController alloc] init];;
+    
+#endif
     
     UIViewController * vc = [[vcClass alloc] initWithParam:param];
     
@@ -53,11 +62,15 @@
 
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam1:(id)param1 Param2:(id)param2{
     
-    NSAssert(name, @"控制器名称不能为nil");
     
     Class vcClass = NSClassFromString(name);
     
+#if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
+#else
+    return [[UIViewController alloc] init];
+    
+#endif
     
     UIViewController * vc = [[vcClass alloc] initWithParam1:param1 Param2:param2];
     

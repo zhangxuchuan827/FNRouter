@@ -14,8 +14,6 @@
 
 #import <Foundation/Foundation.h>
 
-///约定好的协议名-建议全小写
-static NSString * FNPtotocolPrefix = @"fnr";
 
 @interface FNURLRouter : NSObject
 
@@ -24,16 +22,22 @@ static NSString * FNPtotocolPrefix = @"fnr";
 
 
 /**
- 模块对应连接表
+ 模块别名对应表
  */
 @property (nonatomic, strong, readonly) NSDictionary * moduleList;
+
+
+
+/**
+ 约定好的协议名 e.p. (fnr://indexVC) 协议名就是fnr  [default : fnr]
+ */
+@property (nonatomic, strong) NSString * protocolPrefix;
 
 
 /**
  用于打开http连接的控制器类型
  */
-@property (nonatomic, strong, readonly) NSString * webViewControllerClassName;
-
+@property (nonatomic, strong, readonly) NSString * defaultWebViewControllerClassName;
 
 /**
  注册webVC的类型，将用于打开http(s)连接
@@ -41,7 +45,7 @@ static NSString * FNPtotocolPrefix = @"fnr";
 
  @param clsName WebVC类型
  */
--(void)registerWebViewController:(NSString*)clsName;
+-(void)registerDefaultWebViewController:(NSString*)clsName;
 
 
 
@@ -55,6 +59,20 @@ static NSString * FNPtotocolPrefix = @"fnr";
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
+
+
+/**
+ 打开一个URL，将自动匹配打开类型，若是http(s)类型，将通过vcName控制器打开,若vcName为空则不会打开
+
+ @param url 连接
+ @param vcName 打开http链接的控制器
+ @param navController 当前导航栏控制器
+ @param animation 动画
+ */
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
+
 
 /**
  打开一个URL，将自动匹配打开类型，通过push方式弹出

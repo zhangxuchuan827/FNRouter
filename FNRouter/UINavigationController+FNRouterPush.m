@@ -13,11 +13,19 @@
 
 -(void)pushVC:(NSString *)name animation:(BOOL)animation{
     
-    NSAssert(name, @"控制器名称不能为nil");
-    
     Class vcClass = NSClassFromString(name);
     
-    NSAssert(vcClass, @"无法链接到该控制器");
+
+    if (vcClass == nil) {
+        
+#if DEBUG
+        NSAssert(vcClass, @"无法链接到该控制器");
+#else
+        return;
+        
+#endif
+        
+    }
     
     UIViewController * vc = [[vcClass alloc] init];
     
@@ -31,12 +39,18 @@
 }
 
 -(void)pushVC:(NSString *)name ParamDictionary:(NSDictionary *)param animation:(BOOL)animation{
-    
-    NSAssert(name, @"控制器名称不能为nil");
-    
+
     Class vcClass = NSClassFromString(name);
     
-    NSAssert(vcClass, @"无法链接到该控制器");
+    if (vcClass == nil) {
+        
+#if DEBUG
+        NSAssert(vcClass, @"无法链接到该控制器");
+#else
+        return;
+        
+#endif
+    }
     
     UIViewController * vc = [[vcClass alloc] initWithParamDictionary:param];
     
@@ -51,11 +65,17 @@
 
 -(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation{
     
-    NSAssert(name, @"控制器名称不能为nil");
-    
     Class vcClass = NSClassFromString(name);
     
-    NSAssert(vcClass, @"无法链接到该控制器");
+    if (vcClass == nil) {
+        
+#if DEBUG
+        NSAssert(vcClass, @"无法链接到该控制器");
+#else
+        return;
+        
+#endif
+    }
     
     UIViewController * vc = [[vcClass alloc] initWithParam:param];
     
@@ -70,11 +90,17 @@
 
 -(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation{
     
-    NSAssert(name, @"控制器名称不能为nil");
-    
     Class vcClass = NSClassFromString(name);
     
-    NSAssert(vcClass, @"无法链接到该控制器");
+    if (vcClass == nil) {
+        
+#if DEBUG
+        NSAssert(vcClass, @"无法链接到该控制器");
+#else
+        return;
+        
+#endif
+    }
     
     UIViewController * vc = [[vcClass alloc] initWithParam1:param1 Param2:param2];
     
@@ -89,11 +115,19 @@
 
 -(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation{
     
-    NSAssert(name, @"控制器名称不能为nil");
-    
     Class vcClass = NSClassFromString(name);
     
-    NSAssert(vcClass, @"无法链接到该控制器");
+    if (vcClass == nil) {
+        
+#if DEBUG
+        NSAssert(vcClass, @"无法链接到该控制器");
+        
+#else
+        return;
+        
+#endif
+        
+    }
     
     UIViewController * vc = [[vcClass alloc] initWithURLString:url];
     
