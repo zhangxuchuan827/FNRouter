@@ -63,8 +63,13 @@
  
  @param name 视图控制器名称
  @param url 连接
+ @param param 参数
  @param animation 动画
  */
+-(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param animation:(BOOL)animation;
+
+-(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param ;
+
 -(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
 
 -(void)pushVC:(NSString *)name url:(NSString*)url;

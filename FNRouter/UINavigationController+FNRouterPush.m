@@ -113,7 +113,7 @@
     
 }
 
--(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation{
+-(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param animation:(BOOL)animation{
     
     Class vcClass = NSClassFromString(name);
     
@@ -129,15 +129,27 @@
         
     }
     
-    UIViewController * vc = [[vcClass alloc] initWithURLString:url];
+    UIViewController * vc = [[vcClass alloc] initWithURLString:url paramDictionary:param];
     
     [self pushViewController:vc animated:animation];
     
 }
 
+-(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param {
+    
+    [self pushVC:name url:url paramDict:param animation:YES];
+    
+}
+
+-(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation{
+    
+    [self pushVC:name url:url paramDict:nil animation:animation];
+    
+}
+
 -(void)pushVC:(NSString *)name url:(NSString*)url{
     
-    [self pushVC:name url:url animation:YES];
+    [self pushVC:name url:url paramDict:nil animation:YES];
 }
 
 @end

@@ -45,13 +45,17 @@ const char * FNUrlStirngKey = "FNUrlStirngKey";
 }
 
 
--(instancetype)initWithURLString:(NSString*)url{
+
+-(instancetype)initWithURLString:(NSString*)url paramDictionary:(NSDictionary *)param{
     
     self = [self init];
+    
     if (self) {
         
         self.FNUrlString = url;
+        self.FNPageParameter = param;
     }
+    
     return self;
 }
 

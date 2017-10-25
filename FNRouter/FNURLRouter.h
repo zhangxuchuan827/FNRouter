@@ -56,22 +56,14 @@
  @param navController 当前导航栏控制器
  @param animation 动画
  */
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
+
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
 
-
-/**
- 打开一个URL，将自动匹配打开类型，若是http(s)类型，将通过vcName控制器打开,若vcName为空则不会打开
-
- @param url 连接
- @param vcName 打开http链接的控制器
- @param navController 当前导航栏控制器
- @param animation 动画
- */
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
-
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 
 
 /**
@@ -79,12 +71,18 @@
  
  @param url 连接
  @param param 字典型参数
+ @param vcName 用来打开http连接的控制器
  @param navController 当前导航栏控制器
  @param animation 动画
  */
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
+
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
+
 
 
 /**

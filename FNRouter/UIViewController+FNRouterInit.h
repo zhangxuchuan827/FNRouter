@@ -56,7 +56,7 @@
  @param url 网页url
  @return self
  */
--(instancetype)initWithURLString:(NSString*)url;
+-(instancetype)initWithURLString:(NSString*)url paramDictionary:(NSDictionary *)param;
 
 
 

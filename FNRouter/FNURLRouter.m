@@ -38,43 +38,74 @@ static FNURLRouter * sharedObj = nil;
     _defaultWebViewControllerClassName = clsName;
 }
 
+///
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController{
     
-    [self openUrl:url withNavigationController:navController animation:YES];
+    [self openUrl:url paramDictionary:nil withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:YES];
 }
 
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
-    [self openUrl:url paramDictionary:nil withNavigationController:navController animation:animation];
+    [self openUrl:url paramDictionary:nil withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:animation];
     
 }
 
+
+///
+
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController{
     
-    [self openUrl:url paramDictionary:param withNavigationController:navController animation:YES];
+    [self openUrl:url paramDictionary:param withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:YES];
 }
 
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
+    [self openUrl:url paramDictionary:param withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:animation];
+    
+}
+
+
+///
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
+    
+    [self openUrl:url paramDictionary:nil withVCName:vcName withNavigationController:navController animation:YES];
+}
+
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+    
+    [self openUrl:url paramDictionary:nil withVCName:vcName withNavigationController:navController animation:animation];
+}
+
+
+
+///
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
+    
+    [self openUrl:url paramDictionary:param withVCName:vcName withNavigationController:navController animation:YES];
+}
+
+
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+    
     if (url == nil ) {
         
-        //NSLog(@"ERROR:传入的URL不能为空");
+        NSLog(@"ERROR:传入的URL不能为空");
         return;
     }
     
     if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
         
-        //NSLog(@"ERROR：URL格式不正确");
+        NSLog(@"ERROR：URL格式不正确");
         return;
     }
     
-    NSURL * targetURL = [[NSURL alloc] initWithString:url];
+    NSURL * targetURL = [[NSURL alloc] initWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
         
-        if (_defaultWebViewControllerClassName) {
+        if (vcName) {
             
-            [navController pushVC:_defaultWebViewControllerClassName url:url animation:animation];
+            [navController pushVC:vcName url:url paramDict:param animation:YES];
             
             return;
         }
@@ -86,7 +117,7 @@ static FNURLRouter * sharedObj = nil;
             return;
         }
         
-        //NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
+        NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
         return;
     }
     
@@ -100,74 +131,33 @@ static FNURLRouter * sharedObj = nil;
         
         [dict setValuesForKeysWithDictionary:[self parsedLinkParameters:targetURL.absoluteString] ];
         
+        
         [navController pushVC:realVCName ParamDictionary:dict animation:animation];
         
         return;
     }
     
-    //NSLog(@"ERROR:无法调用该URL-%@",url);
+#if DEBUG
     
+    UIAlertController * alt = [UIAlertController alertControllerWithTitle:@"跳转失败" message:[NSString stringWithFormat:@"无法跳转：%@",url] preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction * okAct = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alt addAction:okAct];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alt animated:YES completion:nil];
+    
+#endif
+    
+    NSLog(@"ERROR:无法调用该URL-%@",url);
 }
 
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
-    
-    if (url == nil ) {
-        
-        //NSLog(@"ERROR:传入的URL不能为空");
-        return;
-    }
-    
-    if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
-        
-        //NSLog(@"ERROR：URL格式不正确");
-        return;
-    }
-    
-    NSURL * targetURL = [[NSURL alloc] initWithString:url];
-    
-    if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
 
-        if (vcName) {
-            
-            [navController pushVC:vcName url:url animation:animation];
-            
-            return;
-        }
-        
-        if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
-            
-            [[UIApplication sharedApplication]openURL:targetURL];
-            
-            return;
-        }
-        
-        //NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
-        return;
-    }
-    
-    //判断是否是模块调用的连接
-    NSString * realVCName = _moduleList[targetURL.host];
-    
-    if ([targetURL.scheme.lowercaseString isEqualToString:self.protocolPrefix] &&
-        realVCName != nil) {
-        
-        [navController pushVC:realVCName ParamDictionary:[self parsedLinkParameters:targetURL.absoluteString] animation:animation];
-        
-        return;
-    }
-    
-    //NSLog(@"ERROR:无法调用该URL-%@",url);
-}
-
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
-    
-    [self openUrl:url withVCName:vcName withNavigationController:navController animation:YES];
-}
 
 -(void)openURLWithSystem:(NSString *)url{
     
     if (url == nil || [url isEqualToString:@""]) {
-        //NSLog(@"ERROR:传入连接不能为空");
+        NSLog(@"ERROR:传入连接不能为空");
         return;
     }
     

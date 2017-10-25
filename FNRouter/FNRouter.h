@@ -42,12 +42,8 @@
 #pragma mark - 下面部分写入控制器名称，建议加前缀或者后缀『 例如：FNR_XXXXXXXXXViewController 』
 #pragma mark - 这部分也可以单独使用头文件，在本处添加引用即可
 
-///新闻列表页
-static NSString * FNR_FNNewsListViewController = @"FNNewsListViewController";
 ///新闻详情页
-static NSString * FNR_FNNewsDetailViewController = @"FNNewsDetailViewController";
-///web控制器
-static NSString * FNR_FNWebViewController = @"FNWebViewController";
+static NSString * FNR_SCNewsDetailWebViewController = @"SCNewsDetailWebViewController";
 
 
 
