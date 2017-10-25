@@ -58,13 +58,13 @@ static FNURLRouter * sharedObj = nil;
     
     if (url == nil ) {
         
-        NSLog(@"ERROR:传入的URL不能为空")
+        //NSLog(@"ERROR:传入的URL不能为空")
         return;
     }
     
     if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
         
-        NSLog(@"ERROR：URL格式不正确");
+        //NSLog(@"ERROR：URL格式不正确");
         return;
     }
     
@@ -72,15 +72,12 @@ static FNURLRouter * sharedObj = nil;
     
     if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
         
-        //
         if (_defaultWebViewControllerClassName) {
             
             [navController pushVC:_defaultWebViewControllerClassName url:url animation:animation];
             
             return;
         }
-        
-        //
         
         if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
             
@@ -89,7 +86,7 @@ static FNURLRouter * sharedObj = nil;
             return;
         }
         
-        NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
+        //NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
         return;
     }
     
@@ -108,7 +105,7 @@ static FNURLRouter * sharedObj = nil;
         return;
     }
     
-    NSLog(@"ERROR:无法调用该URL-%@",url);
+    //NSLog(@"ERROR:无法调用该URL-%@",url);
     
 }
 
@@ -116,29 +113,26 @@ static FNURLRouter * sharedObj = nil;
     
     if (url == nil ) {
         
-        NSLog(@"ERROR:传入的URL不能为空")
+        //NSLog(@"ERROR:传入的URL不能为空")
         return;
     }
     
     if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
         
-        NSLog(@"ERROR：URL格式不正确");
+        //NSLog(@"ERROR：URL格式不正确");
         return;
     }
     
     NSURL * targetURL = [[NSURL alloc] initWithString:url];
     
     if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
-        
-        //
+
         if (vcName) {
             
             [navController pushVC:vcName url:url animation:animation];
             
             return;
         }
-        
-        //
         
         if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
             
@@ -147,7 +141,7 @@ static FNURLRouter * sharedObj = nil;
             return;
         }
         
-        NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
+        //NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
         return;
     }
     
@@ -162,7 +156,7 @@ static FNURLRouter * sharedObj = nil;
         return;
     }
     
-    NSLog(@"ERROR:无法调用该URL-%@",url);
+    //NSLog(@"ERROR:无法调用该URL-%@",url);
 }
 
 -(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
@@ -173,7 +167,7 @@ static FNURLRouter * sharedObj = nil;
 -(void)openURLWithSystem:(NSString *)url{
     
     if (url == nil || [url isEqualToString:@""]) {
-        NSLog(@"ERROR:传入连接不能为空");
+        //NSLog(@"ERROR:传入连接不能为空");
         return;
     }
     
