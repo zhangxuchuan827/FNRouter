@@ -58,7 +58,7 @@ static FNURLRouter * sharedObj = nil;
     
     if (url == nil ) {
         
-        //NSLog(@"ERROR:传入的URL不能为空")
+        //NSLog(@"ERROR:传入的URL不能为空");
         return;
     }
     

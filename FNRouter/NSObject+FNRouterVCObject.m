@@ -16,14 +16,17 @@
     
 #if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
-#else
-    return [[UIViewController alloc] init];;
-    
 #endif
     
-    UIViewController * vc = [[vcClass alloc] init];
-    
-    return vc;
+    if(vcClass){
+        
+        return [[vcClass alloc] init];
+        
+    }else{
+        
+        return [UIViewController new];
+    }
+
     
 }
 
@@ -34,14 +37,16 @@
     
 #if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
-#else
-    return [[UIViewController alloc] init];;
-    
 #endif
     
-    UIViewController * vc = [[vcClass alloc] initWithParamDictionary:param];
-    
-    return vc;
+    if(vcClass){
+        
+        return  [[vcClass alloc] initWithParamDictionary:param];
+        
+    }else{
+        
+        return [UIViewController new];
+    }
 }
 
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam:(id)param{
@@ -50,14 +55,17 @@
     
 #if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
-#else
-    return [[UIViewController alloc] init];;
-    
 #endif
     
-    UIViewController * vc = [[vcClass alloc] initWithParam:param];
-    
-    return vc;
+    if(vcClass){
+        
+        return [[vcClass alloc] initWithParam:param];
+        
+    }else{
+        
+        return [UIViewController new];
+    }
+
 }
 
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam1:(id)param1 Param2:(id)param2{
@@ -67,14 +75,16 @@
     
 #if DEBUG
     NSAssert(vcClass, @"无法链接到该控制器");
-#else
-    return [[UIViewController alloc] init];
-    
 #endif
     
-    UIViewController * vc = [[vcClass alloc] initWithParam1:param1 Param2:param2];
-    
-    return vc;
+    if (vcClass) {
+        
+        return [[vcClass alloc] initWithParam1:param1 Param2:param2];
+    }else{
+        
+        return [UIViewController new];
+    }
+
 }
 
 
