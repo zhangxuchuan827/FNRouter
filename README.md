@@ -2,9 +2,10 @@
 
 这是一个简单高效的路由插件
 
-备注：本插件遵循面向协议编程思想，增强各模块之间的独立性，高效解耦合。推荐以基础数据类型传递参数，但从实际出发具体业务中不使用Model将有可能降低开发效率和项目稳定性。所以建议将工程中所有的Model归类，统一做全局引用。传递参数时可传递模型数据
 
-注意：在业务逻辑中必须重写相关的初始化方法。具体参照代码标注。
+备注：本插件遵循面向协议编程思想，增强各模块之间的独立性，高效解耦合。
+推荐以基础数据类型传递参数，但从实际出发具体业务中不使用Model将有可能降低开发效率和项目稳定性。所以建议将工程中所有的Model归类，统一做全局引用。传递参数时可传递模型数据
+
 
 
 ## 解决什么问题
@@ -105,10 +106,15 @@ e.p.
 
 
 ```
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
+
 
 
 e.p.
@@ -135,3 +141,59 @@ e.p.
 
 UIViewController * vc = [self getInstanceByViewControllerName:FNR_FNNewsListViewController];
 ```
+
+## 初始化
+
+```
+///在APPDelegate中注册一个WebController
+[[FNURLRouter shared]registerDefaultWebViewController:@"WebViewControllerName"];
+
+
+///修改协议名，默认fnr
+[FNURLRouter shared].protocolPrefix = @"XXXXX";
+
+
+```
+
+## 注意
+
+在业务逻辑中必须重写相关的初始化方法。具体参照代码标注。
+
+```
+需要重写的方法：
+UIViewController+FNRouterInit.m
+
+-(instancetype)initWithParam:(id)param;
+-(instancetype)initWithParam1:(id)param1 Param2:(id)param2;
+
+
+例：
+-(instancetype)initWithParam:(id)param{
+    self = [super init];//注意这里是init
+    if(self){
+    }
+    return self;
+}
+-(instancetype)initWithParam1:(id)param1 Param2:(id)param2{
+    self = [super init];//注意这里是init
+    if(self){
+    }
+    return self;
+}
+
+
+```
+
+
+## 联系我
+
+[![邮件](./img/mail.png)](mailto:zhangxuchuan827@163.com)
+[![邮件](./img/weibo.png)](https://weibo.com/zhangxuchuan)
+
+## Apache License 2.0
+
+对，这里是许可协议
+
+
+
+

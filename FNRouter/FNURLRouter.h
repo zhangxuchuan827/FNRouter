@@ -14,6 +14,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * FNTitleKey = @"title";
+
 
 @interface FNURLRouter : NSObject
 

@@ -132,7 +132,7 @@ static FNURLRouter * sharedObj = nil;
         [dict setValuesForKeysWithDictionary:[self parsedLinkParameters:targetURL.absoluteString] ];
         
         
-        [navController pushVC:realVCName ParamDictionary:dict animation:animation];
+        [navController pushVC:realVCName ParamDictionary:dict animation:YES];
         
         return;
     }

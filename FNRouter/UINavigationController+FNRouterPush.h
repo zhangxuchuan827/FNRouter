@@ -40,9 +40,12 @@
  @param param 参数1
  @param animation 动画
  */
--(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name
+        Param:(id)param
+    animation:(BOOL)animation;
 
--(void)pushVC:(NSString *)name Param:(id)param;
+-(void)pushVC:(NSString *)name
+        Param:(id)param;
 
 
 /**
@@ -53,9 +56,14 @@
  @param param2 参数2
  @param animation 动画
  */
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name
+       Param1:(id)param1
+       Param2:(id)param2
+    animation:(BOOL)animation;
 
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2;
+-(void)pushVC:(NSString *)name
+        Param1:(id)param1
+        Param2:(id)param2;
 
 
 /**
@@ -66,12 +74,20 @@
  @param param 参数
  @param animation 动画
  */
--(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name
+          url:(NSString*)url
+    paramDict:(NSDictionary*)param
+    animation:(BOOL)animation;
 
--(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param ;
+-(void)pushVC:(NSString *)name
+          url:(NSString*)url
+    paramDict:(NSDictionary*)param ;
 
--(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name
+          url:(NSString*)url
+    animation:(BOOL)animation;
 
--(void)pushVC:(NSString *)name url:(NSString*)url;
+-(void)pushVC:(NSString *)name
+          url:(NSString*)url;
 
 @end

@@ -10,6 +10,7 @@
 
 @implementation UINavigationController (FNRouterPush)
 
+///
 
 -(void)pushVC:(NSString *)name animation:(BOOL)animation{
     
@@ -38,6 +39,8 @@
     [self pushVC:name animation:YES];
 }
 
+///
+
 -(void)pushVC:(NSString *)name ParamDictionary:(NSDictionary *)param animation:(BOOL)animation{
 
     Class vcClass = NSClassFromString(name);
@@ -62,6 +65,9 @@
     
     [self pushVC:name ParamDictionary:param animation:YES];
 }
+
+///
+
 
 -(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation{
     
@@ -88,7 +94,9 @@
     [self pushVC:name Param:param];
 }
 
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation{
+///
+
+-(void)pushVC:(NSString *)name Param1:(id)param1 Param2:(id)param2 animation:(BOOL)animation{
     
     Class vcClass = NSClassFromString(name);
     
@@ -107,11 +115,13 @@
     [self pushViewController:vc animated:animation];
 }
 
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2{
+-(void)pushVC:(NSString *)name Param1:(id)param1 Param2:(id)param2{
     
-    [self pushVC:name Para1:param1 Param:param2 animation:YES];
+    [self pushVC:name Param1:param1 Param2:param2 animation:YES];
     
 }
+
+///
 
 -(void)pushVC:(NSString *)name url:(NSString*)url paramDict:(NSDictionary*)param animation:(BOOL)animation{
     
@@ -140,6 +150,9 @@
     [self pushVC:name url:url paramDict:param animation:YES];
     
 }
+
+
+///
 
 -(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation{
     

@@ -21,7 +21,7 @@
  备注：
      本插件遵循面向协议编程思想，增强各模块之间的独立性，高效解耦合。
      推荐以基础数据类型传递参数，但从实际出发具体业务中不使用Model将有可能降低开发效率和项目稳定性。
-     所以建议将工程中所有的Model归类，统一做全局引用。传递参数时可传递模型数据
+     所以建议将工程中所有的Model归类,做全局统一引用。传递参数时可传递模型数据
  
  注意：在业务逻辑中必须重写相关的初始化方法。具体参照代码标注。
  
@@ -42,9 +42,10 @@
 #pragma mark - 下面部分写入控制器名称，建议加前缀或者后缀『 例如：FNR_XXXXXXXXXViewController 』
 #pragma mark - 这部分也可以单独使用头文件，在本处添加引用即可
 
-///新闻详情页
-static NSString * FNR_SCNewsDetailWebViewController = @"SCNewsDetailWebViewController";
-
+///搜索页面
+static NSString * FNR_SXNewSearchVC = @"SXNewSearchVC";
+///公告
+static NSString * FNR_SwitchNoticeVC = @"SwitchNoticeVC";
 
 
 
