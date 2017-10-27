@@ -8,6 +8,7 @@
 
 #import "FNURLRouter.h"
 #import "UIViewController+FNRouterInit.h"
+#import "UINavigationController+FNRouterPush.h"
 
 @implementation FNURLRouter
 
