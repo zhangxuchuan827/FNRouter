@@ -30,6 +30,8 @@
     
     UIViewController * vc = [[vcClass alloc] init];
     
+    vc.hidesBottomBarWhenPushed = YES;
+    
     [self pushViewController:vc animated:animation];
     
 }
@@ -56,6 +58,8 @@
     }
     
     UIViewController * vc = [[vcClass alloc] initWithParamDictionary:param];
+    
+    vc.hidesBottomBarWhenPushed = YES;
     
     [self pushViewController:vc animated:animation];
     
@@ -85,6 +89,8 @@
     
     UIViewController * vc = [[vcClass alloc] initWithParam:param];
     
+    vc.hidesBottomBarWhenPushed = YES;
+    
     [self pushViewController:vc animated:animation];
     
 }
@@ -111,6 +117,8 @@
     }
     
     UIViewController * vc = [[vcClass alloc] initWithParam1:param1 Param2:param2];
+    
+    vc.hidesBottomBarWhenPushed = YES;
     
     [self pushViewController:vc animated:animation];
 }
@@ -140,6 +148,8 @@
     }
     
     UIViewController * vc = [[vcClass alloc] initWithURLString:url paramDictionary:param];
+    
+    vc.hidesBottomBarWhenPushed = YES;
     
     [self pushViewController:vc animated:animation];
     

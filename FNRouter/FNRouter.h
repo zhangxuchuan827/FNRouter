@@ -44,8 +44,7 @@
 
 ///搜索页面
 static NSString * FNR_SXNewSearchVC = @"SXNewSearchVC";
-///公告
-static NSString * FNR_SwitchNoticeVC = @"SwitchNoticeVC";
+
 
 
 
