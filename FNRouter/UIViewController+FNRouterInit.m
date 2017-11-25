@@ -8,7 +8,6 @@
 
 #import "UIViewController+FNRouterInit.h"
 #import <objc/objc.h>
-#import <objc/runtime.h>
 
 const char * FNPageParameterKey = "FNPageParameterKey";
 const char * FNUrlStirngKey = "FNUrlStirngKey";

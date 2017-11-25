@@ -8,7 +8,6 @@
 
 #import "FNURLRouter.h"
 #import "UIViewController+FNRouterInit.h"
-#import "UINavigationController+FNRouterPush.h"
 
 @implementation FNURLRouter
 
@@ -40,64 +39,64 @@ static FNURLRouter * sharedObj = nil;
 }
 
 ///
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController{
+-(BOOL)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController{
     
-    [self openUrl:url paramDictionary:nil withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:YES];
+    return [self openUrl:url paramDictionary:nil withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:YES];
 }
 
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+-(BOOL)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
-    [self openUrl:url paramDictionary:nil withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:animation];
-    
-}
-
-
-///
-
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController{
-    
-    [self openUrl:url paramDictionary:param withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:YES];
-}
-
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
-    
-    [self openUrl:url paramDictionary:param withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:animation];
+    return [self openUrl:url paramDictionary:nil withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:animation];
     
 }
 
 
 ///
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
+
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController{
     
-    [self openUrl:url paramDictionary:nil withVCName:vcName withNavigationController:navController animation:YES];
+    return [self openUrl:url paramDictionary:param withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:YES];
 }
 
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
-    [self openUrl:url paramDictionary:nil withVCName:vcName withNavigationController:navController animation:animation];
+    return [self openUrl:url paramDictionary:param withVCName:_defaultWebViewControllerClassName withNavigationController:navController animation:animation];
+    
+}
+
+
+///
+-(BOOL)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
+    
+    return [self openUrl:url paramDictionary:nil withVCName:vcName withNavigationController:navController animation:YES];
+}
+
+-(BOOL)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+    
+    return [self openUrl:url paramDictionary:nil withVCName:vcName withNavigationController:navController animation:animation];
 }
 
 
 
 ///
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController{
     
-    [self openUrl:url paramDictionary:param withVCName:vcName withNavigationController:navController animation:YES];
+    return [self openUrl:url paramDictionary:param withVCName:vcName withNavigationController:navController animation:YES];
 }
 
 
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
     if (url == nil ) {
         
         NSLog(@"ERROR:传入的URL不能为空");
-        return;
+        return NO;
     }
     
     if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
         
         NSLog(@"ERROR：URL格式不正确");
-        return;
+        return NO;
     }
     
     NSURL * targetURL = [[NSURL alloc] initWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -108,18 +107,18 @@ static FNURLRouter * sharedObj = nil;
             
             [navController pushVC:vcName url:url paramDict:param animation:YES];
             
-            return;
+            return YES;
         }
         
-        if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
-            
-            [[UIApplication sharedApplication]openURL:targetURL];
-            
-            return;
-        }
-        
-        NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
-        return;
+//        if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
+//
+//            [[UIApplication sharedApplication]openURL:targetURL];
+//
+//            return NO;
+//        }
+//
+//        NSLog(@"ERROR:这里是系统浏览器也调用不起来URL-%@",url);
+        return NO;
     }
     
     //判断是否是模块调用的连接
@@ -135,7 +134,7 @@ static FNURLRouter * sharedObj = nil;
         
         [navController pushVC:realVCName ParamDictionary:dict animation:YES];
         
-        return;
+        return YES;
     }
     
 #if DEBUG
@@ -151,6 +150,8 @@ static FNURLRouter * sharedObj = nil;
 #endif
     
     NSLog(@"ERROR:无法调用该URL-%@",url);
+    
+    return NO;
 }
 
 
@@ -170,6 +171,40 @@ static FNURLRouter * sharedObj = nil;
     }
     
 }
+
+
+-(BOOL)isProtocolUrl:(NSString *)url{
+    if (url == nil ) {
+        
+        NSLog(@"ERROR:传入的URL不能为空");
+        return NO;
+    }
+    
+    NSString * volidateString = [NSString stringWithFormat:@"%@+://[^\\s]*",self.protocolPrefix.lowercaseString];
+    
+    if ([url.lowercaseString rangeOfString:volidateString options:NSRegularExpressionSearch].location == NSNotFound) {
+        
+        NSLog(@"ERROR：不是协议好的协议类型");
+        return NO;
+    }
+
+    return YES;
+}
+-(BOOL)canOpenModule:(NSString *)url{
+    
+    if (![self isProtocolUrl:url]) {
+        
+        return NO;
+    }
+    
+    NSURL * targetURL = [[NSURL alloc] initWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    //判断白名单中有没有该项
+    NSString * realVCName = _moduleList[targetURL.host];
+    
+    return realVCName != nil ;
+    
+}
+
 
 #pragma mark - 解析参数
 

@@ -13,7 +13,6 @@
 
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 static NSString * FNTitleKey = @"title";
 
@@ -59,13 +58,13 @@ static NSString * FNTitleKey = @"title";
  @param navController 当前导航栏控制器
  @param animation 动画
  */
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(BOOL)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
+-(BOOL)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(BOOL)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
+-(BOOL)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
 
 
 
@@ -78,13 +77,26 @@ static NSString * FNTitleKey = @"title";
  @param navController 当前导航栏控制器
  @param animation 动画
  */
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
+-(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
+
+
+
+/**
+ 是否是协议好的连接格式
+ */
+-(BOOL)isProtocolUrl:(NSString *)url;
+
+
+/**
+ 可以打开该模块
+ */
+-(BOOL)canOpenModule:(NSString *)url;
 
 
 
