@@ -8,6 +8,7 @@
 
 #import "UIViewController+FNRouterInit.h"
 #import <objc/objc.h>
+#import <objc/runtime.h>
 
 const char * FNPageParameterKey = "FNPageParameterKey";
 const char * FNUrlStirngKey = "FNUrlStirngKey";
@@ -28,18 +29,10 @@ const char * FNUrlStirngKey = "FNUrlStirngKey";
 
 -(instancetype)initWithParam:(id)param{
     
-#if DEBUG
-    NSAssert(0, @"必须重写该方法");
-#endif
-    
     return [self init];
 }
 
 -(instancetype)initWithParam1:(id)param1 Param2:(id)param2{
-    
-#if DEBUG
-    NSAssert(0, @"必须重写该方法");
-#endif
     
     return [self init];
 }

@@ -9,17 +9,13 @@
 /* Begin PBXBuildFile section */
 		F38B11F31FA1ED8B00D1A305 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B11F21FA1ED8B00D1A305 /* AppDelegate.m */; };
 		F38B11F61FA1ED8B00D1A305 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B11F51FA1ED8B00D1A305 /* ViewController.m */; };
-		F38B11F91FA1ED8B00D1A305 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38B11F71FA1ED8B00D1A305 /* Main.storyboard */; };
 		F38B11FB1FA1ED8B00D1A305 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38B11FA1FA1ED8B00D1A305 /* Assets.xcassets */; };
-		F38B11FE1FA1ED8B00D1A305 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38B11FC1FA1ED8B00D1A305 /* LaunchScreen.storyboard */; };
 		F38B12011FA1ED8B00D1A305 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B12001FA1ED8B00D1A305 /* main.m */; };
 		F38B12141FA1EE4200D1A305 /* UINavigationController+FNRouterPush.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B120A1FA1EE4200D1A305 /* UINavigationController+FNRouterPush.m */; };
 		F38B12151FA1EE4200D1A305 /* FNURLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B120F1FA1EE4200D1A305 /* FNURLRouter.m */; };
 		F38B12161FA1EE4200D1A305 /* FNRModuleList.plist in Resources */ = {isa = PBXBuildFile; fileRef = F38B12111FA1EE4200D1A305 /* FNRModuleList.plist */; };
 		F38B12171FA1EE4200D1A305 /* UIViewController+FNRouterInit.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B12121FA1EE4200D1A305 /* UIViewController+FNRouterInit.m */; };
 		F38B12181FA1EE4200D1A305 /* NSObject+FNRouterVCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B12131FA1EE4200D1A305 /* NSObject+FNRouterVCObject.m */; };
-		F38B121B1FA1EE9300D1A305 /* UIWebView+FNRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B121A1FA1EE9300D1A305 /* UIWebView+FNRouter.m */; };
-		F38B121E1FA1EF3000D1A305 /* WKWebView+FNRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = F38B121D1FA1EF3000D1A305 /* WKWebView+FNRouter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +24,7 @@
 		F38B11F21FA1ED8B00D1A305 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F38B11F41FA1ED8B00D1A305 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F38B11F51FA1ED8B00D1A305 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F38B11F81FA1ED8B00D1A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F38B11FA1FA1ED8B00D1A305 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F38B11FD1FA1ED8B00D1A305 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F38B11FF1FA1ED8B00D1A305 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F38B12001FA1ED8B00D1A305 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F38B120A1FA1EE4200D1A305 /* UINavigationController+FNRouterPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FNRouterPush.m"; sourceTree = "<group>"; };
@@ -43,10 +37,6 @@
 		F38B12111FA1EE4200D1A305 /* FNRModuleList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FNRModuleList.plist; sourceTree = "<group>"; };
 		F38B12121FA1EE4200D1A305 /* UIViewController+FNRouterInit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FNRouterInit.m"; sourceTree = "<group>"; };
 		F38B12131FA1EE4200D1A305 /* NSObject+FNRouterVCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FNRouterVCObject.m"; sourceTree = "<group>"; };
-		F38B12191FA1EE9300D1A305 /* UIWebView+FNRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebView+FNRouter.h"; sourceTree = "<group>"; };
-		F38B121A1FA1EE9300D1A305 /* UIWebView+FNRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+FNRouter.m"; sourceTree = "<group>"; };
-		F38B121C1FA1EF3000D1A305 /* WKWebView+FNRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+FNRouter.h"; sourceTree = "<group>"; };
-		F38B121D1FA1EF3000D1A305 /* WKWebView+FNRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+FNRouter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +74,7 @@
 				F38B11F21FA1ED8B00D1A305 /* AppDelegate.m */,
 				F38B11F41FA1ED8B00D1A305 /* ViewController.h */,
 				F38B11F51FA1ED8B00D1A305 /* ViewController.m */,
-				F38B11F71FA1ED8B00D1A305 /* Main.storyboard */,
 				F38B11FA1FA1ED8B00D1A305 /* Assets.xcassets */,
-				F38B11FC1FA1ED8B00D1A305 /* LaunchScreen.storyboard */,
 				F38B11FF1FA1ED8B00D1A305 /* Info.plist */,
 				F38B12001FA1ED8B00D1A305 /* main.m */,
 			);
@@ -105,10 +93,6 @@
 				F38B12131FA1EE4200D1A305 /* NSObject+FNRouterVCObject.m */,
 				F38B120B1FA1EE4200D1A305 /* FNURLRouter.h */,
 				F38B120F1FA1EE4200D1A305 /* FNURLRouter.m */,
-				F38B12191FA1EE9300D1A305 /* UIWebView+FNRouter.h */,
-				F38B121A1FA1EE9300D1A305 /* UIWebView+FNRouter.m */,
-				F38B121C1FA1EF3000D1A305 /* WKWebView+FNRouter.h */,
-				F38B121D1FA1EF3000D1A305 /* WKWebView+FNRouter.m */,
 				F38B12111FA1EE4200D1A305 /* FNRModuleList.plist */,
 			);
 			name = FNRouter;
@@ -173,10 +157,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F38B11FE1FA1ED8B00D1A305 /* LaunchScreen.storyboard in Resources */,
 				F38B12161FA1EE4200D1A305 /* FNRModuleList.plist in Resources */,
 				F38B11FB1FA1ED8B00D1A305 /* Assets.xcassets in Resources */,
-				F38B11F91FA1ED8B00D1A305 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,32 +175,11 @@
 				F38B12141FA1EE4200D1A305 /* UINavigationController+FNRouterPush.m in Sources */,
 				F38B11F31FA1ED8B00D1A305 /* AppDelegate.m in Sources */,
 				F38B12171FA1EE4200D1A305 /* UIViewController+FNRouterInit.m in Sources */,
-				F38B121B1FA1EE9300D1A305 /* UIWebView+FNRouter.m in Sources */,
 				F38B12181FA1EE4200D1A305 /* NSObject+FNRouterVCObject.m in Sources */,
-				F38B121E1FA1EF3000D1A305 /* WKWebView+FNRouter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		F38B11F71FA1ED8B00D1A305 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F38B11F81FA1ED8B00D1A305 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F38B11FC1FA1ED8B00D1A305 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F38B11FD1FA1ED8B00D1A305 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F38B12021FA1ED8B00D1A305 /* Debug */ = {

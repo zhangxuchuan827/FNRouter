@@ -80,14 +80,15 @@ URL调用Native相关逻辑都在这里
 1.页面跳转
 
 ```
--(void)pushVC:(NSString *)name animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name ;
--(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name Param:(id)param;
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2;
--(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name url:(NSString*)url;
+-(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
+
 
 e.p. 
 [self.navigationController pushVC:FNR_FNNewsDetailViewController ParamDictionary:@{@"contentId":@10001} animation:YES];
@@ -106,14 +107,14 @@ e.p.
 
 
 ```
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
 
 
@@ -134,6 +135,7 @@ e.p.
 ```
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name;
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParamDictionary:(NSDictionary *)param;
+
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam:(id)param;
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name withParam1:(id)param1 Param2:(id)param2;
 
@@ -165,21 +167,6 @@ UIViewController+FNRouterInit.m
 
 -(instancetype)initWithParam:(id)param;
 -(instancetype)initWithParam1:(id)param1 Param2:(id)param2;
-
-
-例：
--(instancetype)initWithParam:(id)param{
-    self = [super init];//注意这里是init
-    if(self){
-    }
-    return self;
-}
--(instancetype)initWithParam1:(id)param1 Param2:(id)param2{
-    self = [super init];//注意这里是init
-    if(self){
-    }
-    return self;
-}
 
 
 ```
