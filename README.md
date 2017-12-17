@@ -81,14 +81,14 @@ URL调用Native相关逻辑都在这里
 
 ```
 -(void)pushVC:(NSString *)name ;
--(void)pushVC:(NSString *)name animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name Param:(id)param;
--(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2;
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
 -(void)pushVC:(NSString *)name url:(NSString*)url;
--(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
 
+-(void)pushVC:(NSString *)name animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
+-(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
 
 e.p. 
 [self.navigationController pushVC:FNR_FNNewsDetailViewController ParamDictionary:@{@"contentId":@10001} animation:YES];
@@ -103,19 +103,22 @@ e.p.
 
 <2>链接格式。对于调用内部的链接有严格的格式要求 
 
+<3>白名单。(FNRModuleList.plist)  url模式跳转必须将别名和VC名对应写到白名单中,否则将调用失败
+
 ![](./img/url.jpg)
 
 
 ```
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 -(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 
+
+-(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+-(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
 
 
 e.p.
@@ -147,7 +150,7 @@ UIViewController * vc = [self getInstanceByViewControllerName:FNR_FNNewsListView
 ## 初始化
 
 ```
-///在APPDelegate中注册一个WebController
+///若使用FNURLRouter则需在APPDelegate中注册一个WebController
 [[FNURLRouter shared]registerDefaultWebViewController:@"WebViewControllerName"];
 
 

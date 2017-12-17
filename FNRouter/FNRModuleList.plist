@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NewsDetail</key>
-	<string>FNNewsDetailViewController</string>
-	<key>NewsList</key>
-	<string>FNNewsListViewController</string>
+	<key>M3</key>
+	<string>M3ViewController</string>
+	<key>M2</key>
+	<string>M2ViewController</string>
 </dict>
 </plist>

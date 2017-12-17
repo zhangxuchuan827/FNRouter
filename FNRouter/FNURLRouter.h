@@ -37,7 +37,7 @@ static NSString * FNTitleKey = @"title";
 
 
 /**
- 用于打开http连接的控制器类型
+ 用于打开http连接的控制器类型,使用-registerDefaultWebViewController注册
  */
 @property (nonatomic, strong, readonly) NSString * defaultWebViewControllerClassName;
 

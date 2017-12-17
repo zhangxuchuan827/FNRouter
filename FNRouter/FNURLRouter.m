@@ -89,14 +89,16 @@ static FNURLRouter * sharedObj = nil;
 -(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
     if (url == nil ) {
-        
+#if DEBUG
         NSLog(@"ERROR:传入的URL不能为空");
+#endif
         return NO;
     }
     
     if ([url rangeOfString:@"[a-zA-z]+://[^\\s]*" options:NSRegularExpressionSearch].location == NSNotFound) {
-        
+#if DEBUG
         NSLog(@"ERROR：URL格式不正确");
+#endif
         return NO;
     }
     
@@ -148,10 +150,10 @@ static FNURLRouter * sharedObj = nil;
     
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alt animated:YES completion:nil];
     
-#endif
+
     
     NSLog(@"ERROR:无法调用该URL-%@",url);
-    
+ #endif
     return NO;
 }
 
@@ -160,7 +162,9 @@ static FNURLRouter * sharedObj = nil;
 -(void)openURLWithSystem:(NSString *)url{
     
     if (url == nil || [url isEqualToString:@""]) {
+#if DEBUG
         NSLog(@"ERROR:传入连接不能为空");
+#endif
         return;
     }
     
@@ -176,16 +180,18 @@ static FNURLRouter * sharedObj = nil;
 
 -(BOOL)isProtocolUrl:(NSString *)url{
     if (url == nil ) {
-        
+#if DEBUG
         NSLog(@"ERROR:传入的URL不能为空");
+#endif
         return NO;
     }
     
     NSString * volidateString = [NSString stringWithFormat:@"%@+://[^\\s]*",self.protocolPrefix.lowercaseString];
     
     if ([url.lowercaseString rangeOfString:volidateString options:NSRegularExpressionSearch].location == NSNotFound) {
-        
+#if DEBUG
         NSLog(@"ERROR：不是协议好的协议类型");
+#endif
         return NO;
     }
 

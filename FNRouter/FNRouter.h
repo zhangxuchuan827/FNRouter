@@ -38,24 +38,21 @@
 #import "UIViewController+FNRouterInit.h"
 #import "FNURLRouter.h"
 
-
 #pragma mark - 下面部分写入控制器名称，建议加前缀或者后缀『 例如：FNR_XXXXXXXXXViewController 』
 #pragma mark - 这部分也可以单独使用头文件，在本处添加引用即可
 
-///新闻详情页
-static NSString * FNR_SCNewsDetailWebViewController = @"SCNewsDetailWebViewController";
-///默认的webController
-static NSString * FNR_SXWebViewController = @"SXWebViewController";
-///首页的搜索框进入的页面
-static NSString * FNR_SXNewSearchVC = @"SXNewSearchVC";
-///公告2
-static NSString * FNR_SwitchNoticeVC = @"SwitchNoticeVC";
-///说明网页
-static NSString * FNR_LiabilityVC = @"LiabilityVCViewController";
-///投票
-static NSString * FNR_SXVotedViewController = @"SXVotedViewController";
-//标准的标签新闻列表
-static NSString * FNR_SXStantardTagListViewController = @"SXStantardTagListViewController";
+///
+static NSString * FN_RootVC = @"ViewController";
+///默认的web浏览页面
+static NSString * FN_DefaultWebController = @"DefaultWebViewController";
+///模块1
+static NSString * FN_M1VC = @"M1ViewController";
+///模块2
+static NSString * FN_M2VC = @"M2ViewController";
+///模块3
+static NSString * FN_M3VC = @"M3ViewController";
+///模块4
+static NSString * FN_M4VC = @"M4ViewController";
 
 
 
