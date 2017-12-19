@@ -77,7 +77,7 @@ URL调用Native相关逻辑都在这里
 ## 使用方法
 
 
-1.页面跳转
+###  1.页面跳转
 
 ```
 -(void)pushVC:(NSString *)name ;
@@ -95,7 +95,7 @@ e.p.
 
 ```
 
-2.URL解析跳转
+###  2.URL解析跳转
 
 注意：
 
@@ -133,7 +133,7 @@ e.p.
 
 ```
 
-3.获取一个控制器实例
+###  3.获取一个控制器实例
 
 ```
 -(UIViewController*)getInstanceByViewControllerName:(NSString *)name;
@@ -174,15 +174,19 @@ UIViewController+FNRouterInit.m
 
 ```
 
+## 预计下一个要解决的问题
+
+1.预先截获webView的请求，解析其访问的目标，高效实现hybrid类型APP调用问题
+
+
 
 ## 联系我
 
 [![邮件](./img/mail.png)](mailto:zhangxuchuan827@163.com)
-[![邮件](./img/weibo.png)](https://weibo.com/zhangxuchuan)
+
 
 ## Apache License 2.0
 
-对，这里是许可协议
 
 
 
