@@ -72,29 +72,34 @@ UIViewController相关初始化方法，有些方法需要重写，具体看文�
 ## 使用方法
 
 
-###  1.页面跳转
+
+
+## 初始化
+
+```
+引入头文件
 
 ->   #import "FNRouter.h"
 
-```
--(void)pushVC:(NSString *)name ;
--(void)pushVC:(NSString *)name Param:(id)param;
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2;
--(void)pushVC:(NSString *)name url:(NSString*)url;
-
--(void)pushVC:(NSString *)name animation:(BOOL)animation;
--(void)pushVC:(NSString *)name Param:(id)param animation:(BOOL)animation;
--(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2 animation:(BOOL)animation;
--(void)pushVC:(NSString *)name url:(NSString*)url animation:(BOOL)animation;
-
-e.p. 
-[self.navigationController pushVC:FNR_FNNewsDetailViewController ParamDictionary:@{@"contentId":@10001} animation:YES];
-
-```
-
-###  2.URL解析跳转
-
+    //若不使用URL解析则可忽略下边步骤
+    
 ->   #import "FNURLRouter.h"
+
+///若使用FNURLRouter则需在APPDelegate中注册一个全局默认的WebController
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[FNURLRouter shared] registerWebViewController:@"FNWebViewController"];
+}
+
+
+///修改协议名，默认fnr
+[FNURLRouter shared].protocolPrefix = @"XXXXX";
+
+
+```
+
+###  1.URL解析跳转
+
 
 注意：
 
@@ -113,22 +118,25 @@ e.p.
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController;
 -(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController;
 
+e.p.
 
--(void)openUrl:(NSString *)url withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
--(void)openUrl:(NSString *)url withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
--(void)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation;
+[[FNURLRouter shared] openUrl:@"http://m.baidu.com" withNavigationController:self.navigationController];
+[[FNURLRouter shared] openUrl:@"fnr://NewsDetail?pno=0&psize=1" withNavigationController:self.navigationController];
+
+```
+
+###  2.页面跳转
+
+
+```
+-(void)pushVC:(NSString *)name ;
+-(void)pushVC:(NSString *)name Param:(id)param;
+-(void)pushVC:(NSString *)name Para1:(id)param1 Param:(id)param2;
+-(void)pushVC:(NSString *)name url:(NSString*)url;
 
 
 e.p.
-跳转Native模块
- [[FNURLRouter shared] openUrl:@"fnr://NewsDetail?pno=0&psize=1" withNavigationController:self.navigationController];
- 
-跳转WebController
-<1>.初始化的时候注册控制器
--(void)registerWebViewController:(NSString*)clsName;
-    
-<2>.[[FNURLRouter shared] openUrl:@"http://m.baidu.com" withNavigationController:self.navigationController];
+[self.navigationController pushVC:FNR_FNNewsDetailViewController ParamDictionary:@{@"contentId":@10001} ];
 
 ```
 
@@ -146,18 +154,7 @@ e.p.
 UIViewController * vc = [self getInstanceByViewControllerName:FNR_FNNewsListViewController];
 ```
 
-## 初始化
 
-```
-///若使用FNURLRouter则需在APPDelegate中注册一个WebController
-[[FNURLRouter shared]registerDefaultWebViewController:@"WebViewControllerName"];
-
-
-///修改协议名，默认fnr
-[FNURLRouter shared].protocolPrefix = @"XXXXX";
-
-
-```
 
 ## 注意
 
