@@ -36,7 +36,7 @@
 #import "NSObject+FNRouterVCObject.h"
 #import "UINavigationController+FNRouterPush.h"
 #import "UIViewController+FNRouterInit.h"
-#import "FNURLRouter.h"
+
 
 #pragma mark - 下面部分写入控制器名称，建议加前缀或者后缀『 例如：FNR_XXXXXXXXXViewController 』
 #pragma mark - 这部分也可以单独使用头文件，在本处添加引用即可

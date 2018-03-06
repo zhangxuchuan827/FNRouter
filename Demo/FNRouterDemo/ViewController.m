@@ -21,6 +21,7 @@
     self.title = @"rootVC";
     
     
+    
     UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     [btn setTitle:@"模块1" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
