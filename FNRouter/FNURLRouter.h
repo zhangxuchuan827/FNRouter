@@ -13,7 +13,6 @@
 
 
 #import <UIKit/UIKit.h>
-#define FNURLRouterShared [FNURLRouter shared]
 
 static NSString * FNTitleKey = @"title";
 

@@ -9,7 +9,7 @@
 #import "DefaultWebViewController.h"
 #import <WebKit/WebKit.h>
 
-@interface DefaultWebViewController ()
+@interface DefaultWebViewController ()<WKNavigationDelegate>
 
 
 @property (nonatomic,strong) WKWebView * webView;
@@ -28,9 +28,19 @@
     //建议在这里处理空url
     
     _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    _webView.navigationDelegate = self;
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     [self.view addSubview:_webView];
     
+}
+
+-(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+    
+    if ([[FNURLRouter shared] isProtocolUrl:navigationAction.request.URL.absoluteString]) {
+        [[FNURLRouter shared]openUrl:navigationAction.request.URL.absoluteString withNavigationController:self.navigationController];
+    }
+    
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 

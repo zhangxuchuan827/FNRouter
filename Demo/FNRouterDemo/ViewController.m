@@ -21,6 +21,20 @@
     self.title = @"rootVC";
     
     
+    [[FNURLRouter shared] registerFunction:@"share" action:^(NSDictionary *dic) {
+        NSLog(@"调起Share");
+    }];
+    
+    [[FNURLRouter shared] registerFunction:@"log" action:^(NSDictionary *dic) {
+        NSLog(@"%@",dic);
+    }];
+    [[FNURLRouter shared] registerFunction:@"alert" action:^(NSDictionary *dic) {
+        UIAlertController * ctl  = [UIAlertController alertControllerWithTitle:dic[@"title"] message:dic[@"content"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction * act = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil];
+        [ctl addAction:act];
+        [self presentViewController:ctl animated:YES completion:nil];
+    }];
+    
     
     UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
     [btn setTitle:@"模块1" forState:UIControlStateNormal];
@@ -57,36 +71,50 @@
     btn5.center = CGPointMake(btn4.center.x, btn4.center.y + 60);
     [self.view addSubview:btn5];
     
+    UIButton *  btn6 = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    [btn6 setTitle:@"测试Function" forState:UIControlStateNormal];
+    [btn6 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [btn6 addTarget:self action:@selector(goTest) forControlEvents:UIControlEventTouchUpInside];
+    btn6.center = CGPointMake(btn5.center.x, btn5.center.y + 60);
+    [self.view addSubview:btn6];
+    
 }
 
 
--(void)goMd1{
+- (void)goMd1 {
     
     [self.navigationController pushVC:FN_M1VC];
     
 }
 
--(void)goMd2{
+- (void)goMd2 {
     
     [self.navigationController pushVC:FN_M2VC ParamDictionary:@{FNTitleKey:@"模块2-来自rootVC"}];
     
 }
 
--(void)goWebMd{
+- (void)goWebMd {
     
     [self.navigationController pushVC:FN_DefaultWebController url:@"http://m.baidu.com"];
 }
 
--(void)goWeb2{
+- (void)goWeb2 {
     
     [[FNURLRouter shared] openUrl:@"http://m.baidu.com" withNavigationController:self.navigationController];
     
 }
 
--(void)goWeb3{
+- (void)goWeb3 {
     
     [[FNURLRouter shared] openUrl:@"fnr://M2?title=模块2-来自url模式" withNavigationController:self.navigationController];
     
+}
+
+- (void)goTest {
+    
+    
+    
+    [[FNURLRouter shared] openUrl:@"http://cdn.zhangxuchuan.top/testFN.html" withNavigationController:self.navigationController];
 }
 
 @end

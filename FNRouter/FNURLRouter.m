@@ -155,6 +155,8 @@ static FNURLRouter * sharedObj = nil;
     
     NSURL * targetURL = [[NSURL alloc] initWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
+    NSLog(@"%@\n%@\n%@",targetURL.host,targetURL.baseURL,targetURL.path);
+    
     if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
         
         if (vcName) {
