@@ -15,6 +15,13 @@
 #import "FNRouter.h"
 #import "FNURLRouter.h"
 
+static NSString * FN_M1VC = @"M1ViewController";
+static NSString * FN_M2VC = @"M2ViewController";
+static NSString * FN_M3VC = @"M3ViewController";
+static NSString * FN_M4VC = @"M4ViewController";
+static NSString * FN_M5VC = @"M5ViewController";
+static NSString * FN_DefaultWebController = @"DefaultWebViewController";
+static NSString * FN_RootVC = @"ViewController";
 
 
 #endif /* PrefixHeader_pch */

@@ -24,24 +24,15 @@ static NSString * FNTitleKey = @"title";
 +(instancetype)shared;
 
 
-/**
- 模块别名对应表
- */
+
+///模块别名对应表
 @property (nonatomic, strong, readonly) NSDictionary * moduleList;
 
-
-
-/**
- 约定好的协议名 e.p. (fnr://indexVC) 协议名就是fnr  [default : fnr]
- */
+///约定好的协议名 e.p. (fnr://indexVC) 协议名就是fnr  [default : fnr]
 @property (nonatomic, strong) NSString * protocolPrefix;
 
-
-/**
- 用于打开http连接的控制器类型,使用-registerDefaultWebViewController注册
- */
+///用于打开http连接的控制器类型,使用-registerDefaultWebViewController注册
 @property (nonatomic, strong, readonly) NSString * defaultWebViewControllerClassName;
-
 /**
  注册webVC的类型，将用于打开http(s)连接
  建议重写-initWithUrl方法，或者直接调用FNUrlString属性
@@ -51,6 +42,27 @@ static NSString * FNTitleKey = @"title";
 -(void)registerDefaultWebViewController:(NSString*)clsName;
 
 
+#pragma mark - 注册Function
+
+
+/**
+ 注册一个触发事件
+
+ @param name 事件名称
+ @param callBack 事件回掉
+ */
+-(void)registerFunction:(NSString *)name action:(void(^)(NSDictionary * dic))callBack;
+
+
+/**
+ 移除事件
+
+ @param name 事件名称
+ */
+-(void)removeFunction:(NSString *)name;
+
+
+#pragma mark - 打开URL
 
 /**
  打开一个URL，将自动匹配打开类型，通过push方式弹出
@@ -88,19 +100,20 @@ static NSString * FNTitleKey = @"title";
 
 
 
+#pragma mark - 基本判断
+
+
 /**
  是否是协议好的连接格式
  */
 -(BOOL)isProtocolUrl:(NSString *)url;
-
 
 /**
  可以打开该模块
  */
 -(BOOL)canOpenModule:(NSString *)url;
 
-
-
+#pragma mark - 其他
 /**
  调用系统浏览器打开连接
 

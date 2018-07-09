@@ -38,22 +38,5 @@
 #import "UIViewController+FNRouterInit.h"
 
 
-#pragma mark - 下面部分写入控制器名称，建议加前缀或者后缀『 例如：FNR_XXXXXXXXXViewController 』
-#pragma mark - 这部分也可以单独使用头文件，在本处添加引用即可
-
-///
-static NSString * FN_RootVC = @"ViewController";
-///默认的web浏览页面
-static NSString * FN_DefaultWebController = @"DefaultWebViewController";
-///模块1
-static NSString * FN_M1VC = @"M1ViewController";
-///模块2
-static NSString * FN_M2VC = @"M2ViewController";
-///模块3
-static NSString * FN_M3VC = @"M3ViewController";
-///模块4
-static NSString * FN_M4VC = @"M4ViewController";
-
-
 
 #endif /* FNRouter_h */

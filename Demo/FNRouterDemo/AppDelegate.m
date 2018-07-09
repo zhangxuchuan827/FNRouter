@@ -24,6 +24,12 @@
     [_window makeKeyAndVisible];
     
     [[FNURLRouter shared] registerDefaultWebViewController:FN_DefaultWebController];
+    [[FNURLRouter shared]registerFunction:@"shareAction" action:^(NSDictionary *dic) {
+        UIAlertAction * act = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertController * alt = [UIAlertController alertControllerWithTitle:@"调用Action" message:@"调用了<分享>功能" preferredStyle:UIAlertControllerStyleAlert];
+        [alt addAction:act];
+        [self.window.rootViewController presentViewController:alt animated:YES completion:nil];
+    }];
     
     return YES;
 }
