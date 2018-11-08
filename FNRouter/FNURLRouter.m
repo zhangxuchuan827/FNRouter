@@ -16,6 +16,8 @@
 @property (nonatomic,strong) NSString * actionName;
 @property (nonatomic,copy) void(^callBack)(NSDictionary * param);
 
+@property (nonatomic, strong) NSString * target;
+
 @end
 @implementation RegistionAction
 
@@ -68,8 +70,10 @@ static FNURLRouter * sharedObj = nil;
 
 #pragma mark - 注册函数
 
--(void)registerFunction:(NSString *)name action:(void(^)(NSDictionary * dic))callBack{
-
+-(void)registerPage:(NSObject *)currentVC Function:(NSString *)name action:(void (^)(NSDictionary *))callBack{
+    
+}
+-(void)registerGlobalFunction:(NSString *)name action:(void (^)(NSDictionary *))callBack{
     if (name == nil || callBack == nil || name.length == 0) {
         NSLog(@"FNURLRouter Error: 注册函数失败");
         return;
@@ -77,10 +81,11 @@ static FNURLRouter * sharedObj = nil;
     RegistionAction * act = [RegistionAction new];
     act.actionName = name;
     act.callBack = callBack;
+    act.target = @"global";
     
     [_registorDict setObject:name forKey:act];
-    
 }
+
 
 -(void)removeFunction:(NSString *)name{
     if (_registorDict.count > 0) {

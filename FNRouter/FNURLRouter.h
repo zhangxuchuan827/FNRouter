@@ -45,12 +45,21 @@ static NSString * FNTitleKey = @"title";
 
 
 /**
- 注册一个触发事件
+ 注册一个全局触发事件
 
  @param name 事件名称
- @param callBack 事件回掉
+ @param callBack 触发回掉
  */
--(void)registerFunction:(NSString *)name action:(void(^)(NSDictionary * dic))callBack;
+-(void)registerGlobalFunction:(NSString *)name action:(void(^)(NSDictionary * dic))callBack;
+
+/**
+ 注册一个单页面触发事件
+
+ @param currentVC 当前的主体 ，通常是ViewController
+ @param name 事件名称
+ @param callBack 触发回调
+ */
+-(void)registerPage:(NSObject *)currentVC Function:(NSString *)name action:(void(^)(NSDictionary * dic))callBack;
 
 
 /**
@@ -59,6 +68,11 @@ static NSString * FNTitleKey = @"title";
  @param name 事件名称
  */
 -(void)removeFunction:(NSString *)name;
+
+/**
+ 移除本控制器所有的监听触发事件
+ */
+-(void)removeCurrentPageFunctions;
 
 
 #pragma mark - 打开URL
