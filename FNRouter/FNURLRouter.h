@@ -45,7 +45,7 @@ static NSString * FNTitleKey = @"title";
 
 
 /**
- 注册一个全局触发事件
+ 注册一个全局触发事件,注意如果多次注册同名全局事件将会被覆盖
 
  @param name 事件名称
  @param callBack 触发回掉
@@ -59,7 +59,7 @@ static NSString * FNTitleKey = @"title";
  @param name 事件名称
  @param callBack 触发回调
  */
--(void)registerPage:(NSObject *)currentVC Function:(NSString *)name action:(void(^)(NSDictionary * dic))callBack;
+-(void)registerPage:(NSObject *)currentVC functionName:(NSString *)name action:(void(^)(NSDictionary * dic))callBack;
 
 
 /**
@@ -72,7 +72,7 @@ static NSString * FNTitleKey = @"title";
 /**
  移除本控制器所有的监听触发事件
  */
--(void)removeCurrentPageFunctions;
+-(void)removeCurrentPageFunctions:(NSObject *)currentVC;
 
 
 #pragma mark - 打开URL

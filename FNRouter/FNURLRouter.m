@@ -70,12 +70,26 @@ static FNURLRouter * sharedObj = nil;
 
 #pragma mark - 注册函数
 
--(void)registerPage:(NSObject *)currentVC Function:(NSString *)name action:(void (^)(NSDictionary *))callBack{
+-(void)registerPage:(NSObject *)currentVC functionName:(NSString *)name action:(void (^)(NSDictionary *))callBack{
+    if (name == nil || callBack == nil || name.length == 0 || currentVC == nil) {
+#if DEBUG
+        NSLog(@"FNURLRouter Error: 注册函数失败");
+#endif
+        return;
+    }
+    __weak NSObject * vc = currentVC;
+    RegistionAction * act = [RegistionAction new];
+    act.actionName = [NSString stringWithFormat:@"%lu%@",vc.hash,name];
+    act.callBack = callBack;
+    act.target = [NSString stringWithFormat:@"%lu",vc.hash];
+    [_registorDict setObject:name forKey:act];
     
 }
 -(void)registerGlobalFunction:(NSString *)name action:(void (^)(NSDictionary *))callBack{
     if (name == nil || callBack == nil || name.length == 0) {
+#if DEBUG
         NSLog(@"FNURLRouter Error: 注册函数失败");
+#endif
         return;
     }
     RegistionAction * act = [RegistionAction new];
@@ -88,9 +102,27 @@ static FNURLRouter * sharedObj = nil;
 
 
 -(void)removeFunction:(NSString *)name{
+    if (name == nil) {
+        NSAssert(name, @"FNURLRouter Error: 移除注册时，传入了空");
+        return;
+    }
     if (_registorDict.count > 0) {
         [_registorDict removeObjectForKey:name];
     }
+}
+-(void)removeCurrentPageFunctions:(NSObject *)currentVC {
+    if (currentVC == nil) {
+        NSAssert(currentVC, @"FNURLRouter Error: 移除注册时，传入了空");
+        return;
+    }
+    __weak NSObject * vc = currentVC;
+    NSString * prefix = [NSString stringWithFormat:@"%lu",vc.hash];
+    for (NSString * key in _registorDict.allKeys) {
+        if ([key hasPrefix:prefix]) {
+            [_registorDict removeObjectForKey:key];
+        }
+    }
+    
 }
 
 #pragma mark - 打开链接
@@ -144,10 +176,9 @@ static FNURLRouter * sharedObj = nil;
 
 -(BOOL)openUrl:(NSString *)url paramDictionary:(NSDictionary *)param withVCName:(NSString *)vcName withNavigationController:(UINavigationController *)navController animation:(BOOL)animation{
     
+    NSAssert(url, @"FNURLRouter ERROR:传入的URL不能为空");
+    
     if (url == nil ) {
-#if DEBUG
-        NSLog(@"FNURLRouter ERROR:传入的URL不能为空");
-#endif
         return NO;
     }
     
@@ -159,25 +190,20 @@ static FNURLRouter * sharedObj = nil;
     }
     
     NSURL * targetURL = [[NSURL alloc] initWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    
+#if DEBUG
     NSLog(@"%@\n%@\n%@",targetURL.host,targetURL.baseURL,targetURL.path);
-    
+#endif
     if ([targetURL.scheme.lowercaseString isEqualToString:@"http"] || [targetURL.scheme.lowercaseString isEqualToString:@"https"]) {
         
         if (vcName) {
-            
             [navController pushVC:vcName url:url paramDict:param animation:YES];
-            
             return YES;
         }
         
 //        if ([[UIApplication sharedApplication]canOpenURL:targetURL]) {
-//
 //            [[UIApplication sharedApplication]openURL:targetURL];
-//
 //            return NO;
 //        }
-//
 //        NSLog(@"FNURLRouter ERROR:这里是系统浏览器也调用不起来URL-%@",url);
         return NO;
     }
@@ -189,10 +215,7 @@ static FNURLRouter * sharedObj = nil;
         realVCName != nil && realVCName.length > 0) {
         
         NSMutableDictionary * dict = [[NSMutableDictionary alloc] initWithDictionary:param];
-        
         [dict setValuesForKeysWithDictionary:[self parsedLinkParameters:targetURL.absoluteString] ];
-        
-        
         [navController pushVC:realVCName ParamDictionary:dict animation:YES];
         
         return YES;
@@ -201,11 +224,8 @@ static FNURLRouter * sharedObj = nil;
 #if DEBUG
     
     UIAlertController * alt = [UIAlertController alertControllerWithTitle:@"跳转失败" message:[NSString stringWithFormat:@"无法跳转：%@",url] preferredStyle:UIAlertControllerStyleAlert];
-    
     UIAlertAction * okAct = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
-    
     [alt addAction:okAct];
-    
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alt animated:YES completion:nil];
     
     NSLog(@"FNURLRouter ERROR:无法调用该URL-%@",url);
@@ -234,10 +254,8 @@ static FNURLRouter * sharedObj = nil;
 
 
 -(BOOL)isProtocolUrl:(NSString *)url{
+    NSAssert(url, @"FNURLRouter ERROR:传入的URL不能为空");
     if (url == nil ) {
-#if DEBUG
-        NSLog(@"FNURLRouter ERROR:传入的URL不能为空");
-#endif
         return NO;
     }
     
@@ -291,7 +309,6 @@ static FNURLRouter * sharedObj = nil;
 
     NSString *path = [[NSBundle mainBundle] pathForResource:@"FNRModuleList" ofType:@"plist"];
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:path];
-    
     _moduleList = dict;
 }
 
