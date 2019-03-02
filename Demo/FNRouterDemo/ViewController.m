@@ -21,14 +21,14 @@
     self.title = @"rootVC";
     
     
-    [[FNURLRouter shared] registerFunction:@"share" action:^(NSDictionary *dic) {
+    [[FNURLRouter shared] registerGlobalFunction:@"share" action:^(NSDictionary *dic) {
         NSLog(@"调起Share");
     }];
     
-    [[FNURLRouter shared] registerFunction:@"log" action:^(NSDictionary *dic) {
+    [[FNURLRouter shared] registerGlobalFunction:@"log" action:^(NSDictionary *dic) {
         NSLog(@"%@",dic);
     }];
-    [[FNURLRouter shared] registerFunction:@"alert" action:^(NSDictionary *dic) {
+    [[FNURLRouter shared] registerGlobalFunction:@"alert" action:^(NSDictionary *dic) {
         UIAlertController * ctl  = [UIAlertController alertControllerWithTitle:dic[@"title"] message:dic[@"content"] preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction * act = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil];
         [ctl addAction:act];
